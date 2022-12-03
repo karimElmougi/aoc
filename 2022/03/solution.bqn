@@ -1,24 +1,17 @@
 #! /usr/bin/env BQN
 
-⟨Split, To, Chunk⟩ ← •Import "../../utils.bqn"
+⟨Split⟩ ← •Import "../../utils.bqn"
 
 input ← •FLines "input.txt"
 # input ← ⟨
 #     "vJrwpWtwJgWrhcsFMMfFFhFp"
 #     "jqHRNqRjqzjGDLGLrsFMfFZSrLrFZsSL"
 #     "PmmdzqPrVvPwwTWBwg"
-#     "wMqvLMZHhHMvwLHjbvcjnnSBnvTQFn"
+#     "wMqvLMZHhHMvwLHjbvcjnnSBnvTQCommon"
 #     "ttgJtRGJQctTZtZT"
 #     "CrZsJsPPZsGzwwsLwLmpwMDw"
 # ⟩
 
-chars ← ('a' To 'z')∾('A' To 'Z')
-
-HalfLen ← ÷⟜2≠
-PocketCommon ← ∧´ (chars⊸∊¨ Chunk˜⟜HalfLen)
-Priority ← +´ (+`=˜chars)⊸×
-
-•Show +´ Priority∘PocketCommon¨ input
-
-groups ← (∧´ chars⊸∊¨)¨ 3 Chunk input
-•Show +´ Priority¨ groups
+Common ← {⍷ (𝕨 ∊ 𝕩) / 𝕨}
+•Show +´ ⊑∘(Common´)¨ {<˘2‿∘⥊𝕩}¨ {m←𝕩≥'a' ⋄ 1+(26×¬m)+𝕩-m⊏"Aa"}¨ input
+•Show +´ ⊑∘(Common´)¨ <˘∘‿3⥊ {m←𝕩≥'a' ⋄ 1+(26×¬m)+𝕩-m⊏"Aa"}¨ input
