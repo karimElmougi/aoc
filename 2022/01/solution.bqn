@@ -1,6 +1,7 @@
 #! /usr/bin/env BQN
-⟨ToNum, SplitF⟩ ← •Import "../../utils.bqn"
-input ← ToNum¨¨ ⟨⟩SplitF •FLines "input.txt"
+⟨ToNum, Partition⟩ ← •Import "../../utils.bqn"
+
+input ← ToNum¨¨ (×≠¨)⊸Partition •FLines "input.txt"
 
 calories ← ∨+´¨ input
 •Show ⊑calories
