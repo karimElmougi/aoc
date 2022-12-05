@@ -15,15 +15,15 @@ input ← •FLines "input.txt"
 #     "move 1 from 1 to 2"
 # ⟩
 
-⟨stacks, instructions⟩ ← (×≠¨)⊸Partition input
+stacks‿instructions ← (×≠¨)⊸Partition input
 stacks ↩ @∾ ' '⊸≠⊸/¨ <˘ ¯1↓˘ {1+4×↕4÷˜1+≠𝕩}⊸⊏ (⍉> stacks)
-instructions ↩ (ToNum¨ (≥⟜'0'∧≤⟜'9')⊸Partition)¨ instructions
+instructions (ToNum¨ (≥⟜'0'∧≤⟜'9')⊸Partition)¨↩
 
 _to_stack ← {Fn _𝕣:
     {𝕊 stack:
         Push ⇐ {stack ↩ 𝕩∾stack }
-        Pop ⇐ {𝕤 ⋄ head ← 𝕩↑stack ⋄ stack ↩ 𝕩↓stack ⋄ Fn head} 
-        Data ⇐ {𝕤 ⋄ stack }
+        Pop ⇐ {head ← @ ⋄ head‿stack ↩ 𝕩 (↑⋈↓) stack ⋄ Fn head} 
+        Data ⇐ {𝕤 ⋄ stack}
     }
 }
 Push ← {𝕨.Push 𝕩}
