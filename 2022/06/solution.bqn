@@ -1,7 +1,5 @@
 #! /usr/bin/env BQN
 
-⟨Split⟩ ← •Import "../../utils.bqn"
-
 input ← •FChars "input.txt"
 # input ← "mjqjpqmgbljsphdztnvjfqwrcgsmlb"
 
